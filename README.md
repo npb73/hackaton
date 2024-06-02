@@ -1,2 +1,2 @@
 # hackaton
-hackaton moscow 2024
+hackaton moscow 2024.

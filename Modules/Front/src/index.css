@@ -1,0 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.leaflet-bottom {
+  display: none !important;
+}
+
+.leaflet-top {
+  display: none !important;
+}
