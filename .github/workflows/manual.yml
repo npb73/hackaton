@@ -27,7 +27,7 @@ jobs:
 
     - name: Build and push Docker image
       run: |
-        docker build -t rhammatov/atom-front:latest Modules\Front\
+        docker build -t rhammatov/atom-front:latest Modules/Front/
         docker push rhammatov/atom-front:latest
     - name: Deploy to remote server
       uses: appleboy/ssh-action@master
