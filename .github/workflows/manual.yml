@@ -34,7 +34,7 @@ jobs:
       with:
         host: 95.174.94.138
         username: user1
-        key: ${{ secrets.SSHKEY }}
+        key: ${{ secrets.KHAMMATOV }}
         port: 22
         script: |
           docker stop atom-front || true
