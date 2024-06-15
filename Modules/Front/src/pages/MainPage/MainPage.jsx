@@ -9,7 +9,7 @@ function MainPage() {
   const [pickedShip, setPickedShip] = useState(null);
 
   const handleSignalRMessage = (msg) => {
-    // console.log('msg from signalR: ', msg);
+    console.log('msg from signalR: ', msg);
   }
 
   return (
