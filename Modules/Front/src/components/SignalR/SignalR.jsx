@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react';
-import { HubConnectionBuilder } from '@microsoft/signalr';
+import { HttpTransportType, HubConnectionBuilder } from '@microsoft/signalr';
 
 function SignalRReceiver({url, onMessage}) {
   const [connection, setConnection] = useState(null);
 
   useEffect(() => {
+    console.log('Create signalR')
     const newConnection = new HubConnectionBuilder()
-      .withUrl(url)
+      .withUrl(url, {
+        skipNegotiation: true,
+        transport: HttpTransportType.WebSockets
+      })
       .withAutomaticReconnect()
       .build();
 
@@ -14,12 +18,12 @@ function SignalRReceiver({url, onMessage}) {
   }, []);
 
   useEffect(() => {
+    console.log('Connection created')
     if (connection) {
       connection.start()
         .then(result => {
           console.log('Connected!', result);
           connection.on('ReceiveMessage', message => {
-            console.log('Received message:', message);
             onMessage(message);
           });
         })
