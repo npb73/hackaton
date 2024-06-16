@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, Polyline, Pane } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import axios from "../../utils/Api";
@@ -102,6 +102,7 @@ function MapComponent({onShipClick}) {
         })
       }
 
+      <Pane name="ships" style={{ zIndex: 9000 }}>
       {
         ships.map((ship) => {
           return (
@@ -118,7 +119,8 @@ function MapComponent({onShipClick}) {
             </Marker>
           )
         })
-      }     
+      }   
+      </Pane>  
 
       <Polyline positions={pickedShipPath} color="blue" />
 

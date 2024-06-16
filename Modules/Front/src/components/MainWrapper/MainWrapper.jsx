@@ -75,12 +75,6 @@ function MainWrapper({shipInfo}){
           
         </div>
 
-        <hr />
-
-        <div className="shipname">
-          Караван:
-        </div>
-
         {/* <div>
           {JSON.stringify(shipInfo)}
         </div>   */}
