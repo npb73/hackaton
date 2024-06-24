@@ -9,9 +9,10 @@ import shipIcon from '../../assets/ship.png';
 import portIcon from '../../assets/port.png';
 
 function filterAndSortShips(ships) {
-  const filteredShips = ships.filter(ship => 
-    ship.schedules.every(schedule => Array.isArray(schedule.ways) && schedule.ways.length > 0)
-  );
+  const filteredShips = ships.filter(ship => {
+    const lastSchedule = ship.schedules[ship.schedules.length - 1];
+    return Array.isArray(lastSchedule.ways) && lastSchedule.ways.length > 0;
+});
 
   const sortedShips = filteredShips.sort((a, b) => {
       if (a.name < b.name) return -1;
@@ -65,8 +66,8 @@ function MapComponent({onShipClick}) {
     onShipClick(ship);
 
     let path = [];
-    for(let i = 0; i < ship?.schedules[0]?.ways.length; i++){
-      path.push(ship?.schedules[0]?.ways[i].split(' ').reverse());
+    for(let i = 0; i < ship?.schedules[ship?.schedules?.length-1]?.ways.length; i++){
+      path.push(ship?.schedules[ship?.schedules?.length-1]?.ways[i].split(' ').reverse());
     }
 
     setPickedShipPath(path)
@@ -108,7 +109,7 @@ function MapComponent({onShipClick}) {
           return (
             <Marker 
               key={ship.id} 
-              position={ship?.schedules[0]?.ways[0].split(' ').reverse()} 
+              position={ship?.schedules[ship?.schedules?.length-1]?.ways[0].split(' ').reverse()} 
               icon={customIcon}
               eventHandlers={{ 
                 click: () => {handleMarkerClick(ship)},
