@@ -4,7 +4,7 @@
 import { useEffect, useRef, useState } from "react";
 import axios from "../../utils/Api";
 
-function MainWrapper({shipInfo}){
+function MainWrapper({shipInfo, openModal}){
 
   const [isInfoOpen, setInfoOpen] = useState(false);
 
@@ -89,6 +89,7 @@ function MainWrapper({shipInfo}){
           style={{ display: 'none' }}
           onChange={handleFileChange}
         />
+        <button className="excel_button" onClick={() => openModal(true)}>Открыть список маршрутов</button>
         <button className="excel_button" onClick={handleButtonClick}>Отправить файл .xlsx</button>
       </div>
     </div>

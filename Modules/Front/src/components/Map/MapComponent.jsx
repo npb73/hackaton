@@ -82,14 +82,14 @@ function MapComponent({onShipClick}) {
       center={[80, 100]}
       zoom={4}
       style={{ height: '100vh', width: '100vw' }}
-      maxZoom={6}
+      maxZoom={8}
       minZoom={3}
-      worldCopyJump={false} 
+      worldCopyJump={true} 
       markerZoomAnimation={false}
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        noWrap={true}
+        // noWrap={true}
       />
 
       {
