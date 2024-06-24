@@ -10,7 +10,7 @@ import portIcon from '../../assets/port.png';
 
 function filterAndSortShips(ships) {
   const filteredShips = ships.filter(ship => 
-      ship.schedules.some(schedule => Array.isArray(schedule.ways) && schedule.ways.length > 0)
+    ship.schedules.every(schedule => Array.isArray(schedule.ways) && schedule.ways.length > 0)
   );
 
   const sortedShips = filteredShips.sort((a, b) => {
