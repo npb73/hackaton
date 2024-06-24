@@ -8,16 +8,23 @@ import axios from "../../utils/Api";
 import shipIcon from '../../assets/ship.png';
 import portIcon from '../../assets/port.png';
 
+const rand = (min, max) => Math.floor(min + Math.random() + (max + 1 - min));
+
 function filterAndSortShips(ships) {
+  ships = ships.filter(ship => {
+    ship.schedules = ship.schedules.filter(schedule => schedule.ways !== null);
+    return ship.schedules.length > 0;
+  });
+
   const filteredShips = ships.filter(ship => {
     const lastSchedule = ship.schedules[ship.schedules.length - 1];
     return Array.isArray(lastSchedule.ways) && lastSchedule.ways.length > 0;
-});
+  });
 
   const sortedShips = filteredShips.sort((a, b) => {
-      if (a.name < b.name) return -1;
-      if (a.name > b.name) return 1;
-      return 0;
+    if (a.name < b.name) return -1;
+    if (a.name > b.name) return 1;
+    return 0;
   });
 
   return sortedShips;
@@ -105,11 +112,12 @@ function MapComponent({onShipClick}) {
 
       <Pane name="ships" style={{ zIndex: 9000 }}>
       {
-        ships.map((ship) => {
+        ships.map((ship, index) => {
+          let pos = ship?.schedules[ship?.schedules?.length-1]?.ways[0].split(' ').reverse()
           return (
             <Marker 
               key={ship.id} 
-              position={ship?.schedules[ship?.schedules?.length-1]?.ways[0].split(' ').reverse()} 
+              position={[Number(pos[0]), Number(pos[1]) + index/10]} 
               icon={customIcon}
               eventHandlers={{ 
                 click: () => {handleMarkerClick(ship)},

@@ -249,3 +249,7 @@
 .path_bottom > button {
   padding: 1vh 2vh;
 }
+
+.leaflet-popup-content-wrapper {
+  z-index: 1212000 !important;
+}
